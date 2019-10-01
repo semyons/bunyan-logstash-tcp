@@ -153,14 +153,13 @@ LogstashStream.prototype.connect = function connect() {
     self.connected = false;
     self.socket.destroy();
     self.socket = null;
-    self.emit('error', err);
+    console.log(err);  // eslint-disable-line no-console
   });
 
   this.socket.on('timeout', () => {
     if (self.socket.readyState !== 'open') {
       self.socket.destroy();
     }
-    self.emit('timeout');
   });
 
   this.socket.on('connect', () => {
